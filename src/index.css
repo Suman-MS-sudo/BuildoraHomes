@@ -1,0 +1,59 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Barlow:ital,wght@0,600;0,700;0,800;1,700&display=swap");
+
+/* ============================================================
+   CONSTRUCTION PROFESSIONAL PALETTE
+   Steel + Amber-Gold + Warm Concrete
+   ============================================================ */
+:root {
+  /* Primary brand gold — deep amber like construction equipment */
+  --gold:        #C8810A;
+  --gold-h:      #A86A08;
+  --gold-light:  #F0A520;
+  --gold-glow:   rgba(200,129,10,0.30);
+
+  /* Steel / Iron darks */
+  --steel:       #101820;   /* near-black steel */
+  --steel-2:     #1C2B3A;   /* card backgrounds in dark sections */
+  --steel-3:     #263344;   /* borders inside dark cards */
+  --steel-mid:   #2D3F52;   /* subtle mid-steel */
+
+  /* Concrete / warm neutrals */
+  --concrete:    #F4F0E8;   /* warm off-white like polished concrete */
+  --concrete-2:  #EAE5D8;   /* hover / alt section bg */
+  --stone:       #7C7567;   /* warm muted text */
+  --text:        #1C1914;   /* dark warm near-black */
+  --white:       #FFFFFF;
+  --border:      #D8D2C6;   /* warm concrete border */
+  --border-dark: rgba(255,255,255,0.09);
+
+  --radius:    8px;
+  --radius-lg: 14px;
+  --shadow:    0 4px 20px rgba(0,0,0,0.09);
+  --shadow-lg: 0 20px 52px rgba(0,0,0,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { isolation: isolate; }
+
+h1, h2, h3 {
+  font-family: "Barlow", system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--steel);
+}
+
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; padding: 0; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--gold); color: #fff; }
