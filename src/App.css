@@ -1603,13 +1603,24 @@
   .about-inner { grid-template-columns: 1fr; gap: 3rem; }
   .about-img-2 { width: 120px; right: -10px; bottom: -12px; }
   .about-badge { top: -14px; left: -10px; }
+  /* Pricing grid: single card per row on mobile */
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .pricing-row { grid-template-columns: 1fr; max-width: 440px; }
+  .pricing-card .pricing-header,
+  .pricing-card .pricing-features,
+  .pricing-card .btn-pricing { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .pricing-card .btn-pricing { margin: 1.2rem 1.4rem 1.6rem; }
+  .price-amount { font-size: 2.2rem; }
+  .pricing-card-img-wrap { height: 160px; }
   .testi-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-cta-inner { flex-direction: column; align-items: flex-start; }
   .stats-inner { gap: 1.5rem; }
   .stat { padding: 0 1.2rem; }
   .stat strong { font-size: 2rem; }
+  .stat-div { display: none; }
+  /* Services: 1 col on mobile for readability */
+  .svc-grid { grid-template-columns: 1fr; }
   .nav-links {
     display: none;
     position: fixed;
@@ -1647,7 +1658,7 @@
   .hero-h1 { font-size: 2.4rem; }
   .hero-btns { flex-direction: column; }
   .hero-btns a { text-align: center; justify-content: center; }
-  .svc-grid { grid-template-columns: 1fr; }
+  .pricing-grid { max-width: 100%; }
   .room-grid { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
   .planner-h1 { font-size: 1.75rem; }
   .room-card-label { font-size: 0.8rem; }
