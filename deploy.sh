@@ -72,13 +72,13 @@ if [ -f "$SSL_CERT" ] && [ -f "$SSL_KEY" ]; then
   SCHEME="https"
   PORT=$HTTPS_PORT
 else
-  # ── Fallback: HTTP on port 80 ──
-  echo "  ⚠  SSL certs not found at $SSL_CERT"
-  echo "     Run: sudo certbot certonly --standalone -d $DOMAIN"
-  echo "     Falling back to HTTP on port $HTTP_PORT"
-  pm2 start serve --name "$APP_NAME" -- -s dist -l $HTTP_PORT
+  # ── Fallback: HTTP on port 443 (no SSL) ──
+  echo "  ⚠  SSL certs not found — serving HTTP on port $HTTPS_PORT (no TLS)"
+  echo "     Access via: http://<server-ip>:$HTTPS_PORT"
+  echo "     To add HTTPS later: sudo certbot certonly --webroot -w $DEPLOY_DIR/dist -d $DOMAIN"
+  pm2 start serve --name "$APP_NAME" -- -s dist -l $HTTPS_PORT
   SCHEME="http"
-  PORT=$HTTP_PORT
+  PORT=$HTTPS_PORT
 fi
 
 # Save PM2 process list so it survives reboots
