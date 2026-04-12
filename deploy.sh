@@ -14,7 +14,7 @@ REPO_URL="https://github.com/Suman-MS-sudo/BuildoraHomes.git"
 DEPLOY_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ── SSL / port config ────────────────────────────────────────
-DOMAIN="${DOMAIN:-hmconstructions.in}"          # override: DOMAIN=example.com bash deploy.sh
+DOMAIN="${DOMAIN:-buildorahomes.in}"            # override: DOMAIN=example.com bash deploy.sh
 SSL_CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
 SSL_KEY="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
 HTTPS_PORT=443
