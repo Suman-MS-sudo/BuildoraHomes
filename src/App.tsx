@@ -159,6 +159,8 @@ export default function App() {
   const cli  = useCountUp(200);
   const [menuOpen, setMenuOpen] = useState(false);
   const [svcCat, setSvcCat] = useState("All");
+  const [specModal, setSpecModal] = useState<string | null>(null);
+  const activePkg = PACKAGES.find(p => p.id === specModal) ?? null;
   const [page, setPage] = useState<'home' | 'intake' | 'planner'>(() => {
     if (typeof window === 'undefined') return 'home';
     const h = window.location.hash;
@@ -363,8 +365,38 @@ export default function App() {
                 </div>
                 <p className="pricing-desc">{pkg.desc}</p>
               </div>
-              <div className="pricing-specs">
-                {pkg.specs.map((section) => (
+              <button className="btn-view-specs" onClick={() => setSpecModal(pkg.id)}>
+                View Full Specs
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <a href="#client-intake" className="btn-pricing">Get Quote</a>
+            </div>
+          ))}
+        </div>
+
+        {/* ── SPECS MODAL ─────────────────────────────────────── */}
+        {activePkg && (
+          <div className="pkg-modal-overlay" onClick={() => setSpecModal(null)}>
+            <div className="pkg-modal" onClick={e => e.stopPropagation()}>
+              <button className="pkg-modal-close" onClick={() => setSpecModal(null)} aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+              <div className="pkg-modal-header">
+                {activePkg.iot && (
+                  <div className="pricing-iot-badge" style={{ marginBottom: '0.5rem' }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12" y2="20.01"/></svg>
+                    IoT Smart Home
+                  </div>
+                )}
+                <div className="pkg-modal-tag">{activePkg.tag}</div>
+                <h3 className="pkg-modal-name">{activePkg.name}</h3>
+                <div className="pricing-price">
+                  <span className="price-amount">{activePkg.price}</span>
+                  <span className="price-unit">/sq ft</span>
+                </div>
+              </div>
+              <div className="pkg-modal-body">
+                {activePkg.specs.map((section) => (
                   <div key={section.cat} className="spec-section">
                     <p className="spec-cat">{section.cat}</p>
                     <ul className="spec-items">
@@ -378,10 +410,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <a href="#client-intake" className="btn-pricing">Get Quote</a>
+              <div className="pkg-modal-footer">
+                <a href="#client-intake" className="btn-pricing" onClick={() => setSpecModal(null)}>Get Quote for {activePkg.name}</a>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
         <div className="pricing-note">
           <p>*Prices are inclusive of all materials and labour. GST extra. Site conditions may affect final pricing.</p>
           <p>*All packages include civil, electrical, plumbing, painting, and finishing work.</p>
