@@ -193,32 +193,6 @@ export default function PlannerPage() {
 
   return (
     <>
-      {/* ── HERO ───────────────────────────────────────────────────── */}
-      <section className="planner-hero-section">
-        <div className="planner-hero-inner">
-          <p className="section-tag-light">HOME DESIGN INSPIRATION</p>
-          <h1 className="planner-h1">
-            Plan Every Room of<br />
-            <span className="planner-gold">Your Dream Home.</span>
-          </h1>
-          <p className="planner-hero-sub">
-            Browse Indian home design ideas room-by-room, then sketch your own
-            floor plan in the free 2D&amp;3D planner.
-          </p>
-          <a
-            href="https://planner5d.com/editor/"
-            target="_blank"
-            rel="noreferrer"
-            className="planner-hero-cta"
-          >
-            Open 2D / 3D Home Planner ↗
-          </a>
-          <p className="planner-hero-note">
-            Opens in a new tab — free, no account needed
-          </p>
-        </div>
-      </section>
-
       {/* ── ROOM GALLERY ────────────────────────────────────────────── */}
       <section className="room-gallery-section">
         <div className="section-head">
