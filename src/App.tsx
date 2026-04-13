@@ -123,7 +123,7 @@ export default function App() {
             <img src="/logo Buildora Homes.jpg" alt="Buildora Homes" className="logo-img" />
             <div className="logo-text-group">
               <span className="logo-name">Buildora Homes</span>
-              <span className="logo-tagline">Luxury Living, Made Affordable</span>
+              <span className="logo-tagline">Your Dream, Our Commitment</span>
             </div>
           </a>
           <nav className={`nav-links${menuOpen ? " nav-open" : ""}`}>
@@ -499,7 +499,7 @@ export default function App() {
                 <img src="/logo Buildora Homes.jpg" alt="Buildora Homes" className="logo-img logo-img-footer" />
                 <span className="footer-logo-name">Buildora Homes</span>
               </a>
-              <p className="footer-about">Luxury Living, Made Affordable — building premium homes for Chennai families since 2015. Quality, transparency, and your dream are our mission.</p>
+              <p className="footer-about">Your Dream, Our Commitment — building premium homes for Chennai families since 2015. Quality, transparency, and your dream are our mission.</p>
               <div className="footer-socials">
                 <a href="#" className="fsoc" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
                 <a href="#" className="fsoc" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
