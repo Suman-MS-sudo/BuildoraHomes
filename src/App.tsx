@@ -534,7 +534,7 @@ export default function App() {
         <div className="footer-bar">
           <div className="footer-bar-inner">
             <span>&copy; 2025 Buildora Homes. All rights reserved.</span>
-            <a href="#top" className="back-top">Back to top &uarr;</a>
+            <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to top ↑</button>
           </div>
         </div>
       </footer>
