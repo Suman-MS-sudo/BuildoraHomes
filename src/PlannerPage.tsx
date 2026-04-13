@@ -32,7 +32,7 @@ const ROOMS: Room[] = [
     id: "bedroom",
     label: "Bedroom",
     emoji: "🛏️",
-    cover: "https://i.pinimg.com/736x/62/60/93/626093dd648746b767d5f175585a7223.jpg",
+    cover: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&auto=format&fit=crop&q=80",
     pins: [
       "https://i.pinimg.com/736x/91/38/53/91385371f5ea1b95c9da76b6449b2113.jpg",
       "https://i.pinimg.com/736x/31/12/69/3112698091e5641eaeba91a6c8ed5e19.jpg",
