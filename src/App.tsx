@@ -23,24 +23,22 @@ function useCountUp(target: number, duration = 1600) {
 }
 
 const SERVICES = [
-  { icon: "house",    cat: "Structure",  label: "Building Construction",      desc: "Full civil structure from foundation to roof slab",  price: "From ₹1,999/sq ft" },
-  { icon: "layers",   cat: "Planning",   label: "Building Planning (2D)",     desc: "Detailed 2D architectural floor & site plans",       price: "Approx. ₹3/sq ft" },
-  { icon: "draft",    cat: "Planning",   label: "Structural Detailed Drawing", desc: "Complete structural engineering drawings",           price: "₹8/sq ft" },
-  { icon: "elev",     cat: "Planning",   label: "Elevation Design",           desc: "Contemporary facade concepts & 3D renders (G+1)",   price: "₹3,000 (G+1)" },
-  { icon: "civil",    cat: "Structure",  label: "Civil Works",                desc: "Foundation, columns & structural civil work",        price: "From ₹600/sq ft" },
-  { icon: "labour",   cat: "Structure",  label: "Building Labour Works",      desc: "Civil, painting, electrical & plumbing labour",      price: "₹950/sq ft" },
-  { icon: "sump",     cat: "Structure",  label: "Sump Construction",          desc: "Underground water sump (5,000–15,000 litres)",       price: "₹21/sq ft" },
-  { icon: "septic",   cat: "Structure",  label: "Septic Tank",                desc: "Septic tank construction & installation",            price: "From ₹15/sq ft" },
-  { icon: "cwall",    cat: "Structure",  label: "Compound Wall",              desc: "6-inch compound wall — strong perimeter security",   price: "₹1,600/sq ft" },
-  { icon: "zap",      cat: "MEP",        label: "Electrical Wiring",          desc: "Full Polycab ISI-standard electrical installation",  price: "₹35/sq ft (Labour)" },
-  { icon: "droplet",  cat: "MEP",        label: "Plumbing (General)",         desc: "General plumbing work with ISI fittings",           price: "₹10,000/point (Labour)" },
-  { icon: "faucet",   cat: "MEP",        label: "Plumbing (Kitchen)",         desc: "Kitchen plumbing — sink, outlet, inlet lines",      price: "₹7,000/point (Labour)" },
-  { icon: "toilet",   cat: "MEP",        label: "Plumbing (Toilet)",          desc: "Toilet plumbing, EWC & health-faucet points",       price: "₹10,000/point (Labour)" },
-  { icon: "tile",     cat: "Finishes",   label: "Tiles Laying",               desc: "Floor & wall tile laying with grout finish",        price: "₹25–₹50/sq ft (Labour)" },
-  { icon: "brush",    cat: "Finishes",   label: "Painting",                   desc: "Interior emulsion & exterior weather-coat paint",   price: "₹6–₹10/sq ft (Labour)" },
-  { icon: "glass",    cat: "Finishes",   label: "Glassing",                   desc: "Toughened glass panels, windows & partitions",     price: "₹30/sq ft (Labour)" },
-  { icon: "brick9",   cat: "Finishes",   label: "Brick Walling (9\")",        desc: "9-inch thick solid Red Brick load-bearing wall",   price: "₹35/sq ft (Labour)" },
-  { icon: "brick4",   cat: "Finishes",   label: "Brick Walling (4\")",        desc: "4-inch partition Red Brick wall construction",     price: "₹30/sq ft (Labour)" },
+  { icon: "house",    cat: "Structure",  label: "Building Construction",        desc: "Full civil structure from foundation to roof slab",                price: "From ₹1,999/sq ft (Material & Labour)" },
+  { icon: "layers",   cat: "Planning",   label: "Building Planning (2D)",       desc: "Detailed 2D architectural floor & site plans",                    price: "Approx. ₹3/sq ft" },
+  { icon: "draft",    cat: "Planning",   label: "Structural Detailed Drawing",  desc: "Complete structural engineering drawings",                        price: "₹8/sq ft" },
+  { icon: "elev",     cat: "Planning",   label: "Elevation Design",             desc: "Contemporary facade concepts & 3D renders (G+1)",                 price: "₹3,000 (G+1)" },
+  { icon: "civil",    cat: "Structure",  label: "Civil Works",                  desc: "Foundation, columns & structural civil work",                     price: "From ₹600/sq ft (Material & Labour)" },
+  { icon: "labour",   cat: "Structure",  label: "Building Labour Works",        desc: "Civil, painting, electrical & plumbing labour",                   price: "₹950/sq ft" },
+  { icon: "sump",     cat: "Structure",  label: "Sump Construction",            desc: "Underground water sump — 5,000 to 15,000 litres",                 price: "₹21/sq ft (Material & Labour)" },
+  { icon: "septic",   cat: "Structure",  label: "Septic Tank",                  desc: "Septic tank construction — 1,000 to 5,000 litres",                price: "From ₹15/sq ft (Material & Labour)" },
+  { icon: "cwall",    cat: "Structure",  label: "Compound Wall",                desc: "6-inch compound wall — strong perimeter security",                price: "₹1,600/running ft (Material & Labour)" },
+  { icon: "zap",      cat: "MEP",        label: "Electrical Wiring",            desc: "Polycab ISI-standard electrical wiring — labour only",            price: "₹35/sq ft (Labour)" },
+  { icon: "droplet",  cat: "MEP",        label: "Plumbing Work",                desc: "Complete plumbing with ISI-certified fittings — labour only",     price: "₹35/sq ft (Labour)" },
+  { icon: "tile",     cat: "Finishes",   label: "Tiles Laying",                 desc: "Floor & wall tile laying with grout finish — labour only",       price: "₹25–₹50/sq ft (Labour)" },
+  { icon: "brush",    cat: "Finishes",   label: "Painting",                     desc: "Interior emulsion & exterior weather-coat — labour only",         price: "₹6–₹10/sq ft (Labour)" },
+  { icon: "upvc",     cat: "Finishes",   label: "UPVC Windows",                 desc: "Premium UPVC frame windows with glass glazing",                   price: "₹350/sq ft" },
+  { icon: "cabinet",  cat: "Finishes",   label: "PVC Cupboard Works",           desc: "Modular PVC cupboards for kitchen, bedroom & storage",            price: "₹200/sq ft" },
+  { icon: "consult",  cat: "Planning",   label: "Free Consultation",            desc: "Free site visit & consultation — within Chennai metro limits",    price: "Free" },
 ];
 
 const TESTIMONIALS = [
@@ -473,9 +471,9 @@ export default function App() {
                   {s.icon === "toilet"  && <g><rect x="8" y="2" width="8" height="5" rx="1"/><path d="M6 7h12a6 6 0 010 12H6A6 6 0 016 7z"/><path d="M11 14v2"/><path d="M13 14v2"/></g>}
                   {s.icon === "tile"    && <g><path d="M12 2l5 5-5 5-5-5 5-5z"/><path d="M2 12l5-5 5 5-5 5-5-5z"/><path d="M12 12l5 5-5 5-5-5 5-5z"/><path d="M22 12l-5-5-5 5 5 5 5-5z"/></g>}
                   {s.icon === "brush"   && <g><rect x="2" y="5" width="13" height="7" rx="1"/><path d="M14 8h2a2 2 0 012 2v2"/><path d="M16 12v7"/><rect x="14" y="19" width="4" height="2" rx="1"/></g>}
-                  {s.icon === "glass"   && <g><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/><path d="M3 21h18"/></g>}
-                  {s.icon === "brick9"  && <g><rect x="2" y="4" width="9" height="5" rx="0.5"/><rect x="13" y="4" width="9" height="5" rx="0.5"/><rect x="2" y="11" width="5" height="5" rx="0.5"/><rect x="9" y="11" width="11" height="5" rx="0.5"/><rect x="2" y="18" width="9" height="4" rx="0.5"/><rect x="13" y="18" width="9" height="4" rx="0.5"/></g>}
-                  {s.icon === "brick4"  && <g><rect x="2" y="5" width="8" height="3.5" rx="0.5"/><rect x="12" y="5" width="10" height="3.5" rx="0.5"/><rect x="2" y="10.5" width="10" height="3.5" rx="0.5"/><rect x="14" y="10.5" width="8" height="3.5" rx="0.5"/><rect x="2" y="16" width="8" height="3.5" rx="0.5"/><rect x="12" y="16" width="10" height="3.5" rx="0.5"/></g>}
+                  {s.icon === "upvc"    && <g><rect x="2" y="3" width="20" height="18" rx="1.5"/><path d="M12 3v18"/><path d="M2 12h20"/><circle cx="8.5" cy="7.5" r="0.8" fill="currentColor"/><circle cx="15.5" cy="16.5" r="0.8" fill="currentColor"/></g>}
+                  {s.icon === "cabinet" && <g><rect x="3" y="2" width="18" height="20" rx="1.5"/><path d="M3 9h18"/><path d="M12 9v13"/><circle cx="8.5" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor"/></g>}
+                  {s.icon === "consult" && <g><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7 8a16 16 0 006.73 6.73l1.49-1.49a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></g>}
                 </svg>
               </div>
               <div className="svc-body">
