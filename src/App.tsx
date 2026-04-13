@@ -154,8 +154,8 @@ export default function App() {
         <div className="hero-inner">
           <div className="hero-copy">
             <div className="hero-eyebrow"><span className="eyebrow-line" />Est. 2015 — Cholapuram, Ambattur, Chennai</div>
-            <h1 className="hero-h1">Luxury Living,<br /><span className="hero-gold">Made Affordable</span><br />For You.</h1>
-            <p className="hero-desc">Buildora Homes delivers luxury-grade construction at prices that make sense — from foundation to smart home finish. Serving Chennai families for over a decade, on time and on budget.</p>
+            <h1 className="hero-h1">Your Dream,<br /><span className="hero-gold">Our Commitment.</span></h1>
+            <p className="hero-desc">Your dream home deserves the best — and Buildora Homes delivers it at prices that make sense. From foundation to smart home finish, serving Chennai families for over a decade, on time and on budget.</p>
             <div className="hero-btns">
               <a href="#pricing" className="btn-gold">View Our Packages</a>
               <a href="#client-intake" className="btn-gold">Fill Your Details</a>
@@ -199,8 +199,8 @@ export default function App() {
           </div>
           <div className="about-copy">
             <p className="section-tag">ABOUT BUILDORA HOMES</p>
-            <h2 className="section-h2">Luxury homes built with integrity, at prices that make sense.</h2>
-            <p className="about-text">Buildora Homes is a Chennai-based end-to-end residential construction company with 10+ years of delivering luxury homes at affordable prices. From foundation to smart home integration — we manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
+            <h2 className="section-h2">Your dream home, built with integrity and commitment.</h2>
+            <p className="about-text">Buildora Homes is a Chennai-based end-to-end residential construction company with 10+ years of turning client dreams into reality. From foundation to smart home integration — we manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
             <ul className="about-points">
               <li><span className="apoint-icon"><CheckIcon /></span>Transparent pricing — exact cost per sq ft, zero hidden charges</li>
               <li><span className="apoint-icon"><CheckIcon /></span>Dedicated in-house teams for civil, electrical and plumbing</li>
@@ -225,7 +225,7 @@ export default function App() {
         <div className="video-overlay" />
         <div className="video-content">
           <p className="section-tag-light">CONSTRUCTION IN ACTION</p>
-          <h2 className="video-h2">Every brick laid with care.<br />Every home built to last.</h2>
+          <h2 className="video-h2">Your dream, built brick by brick.<br />Our commitment, from day one to handover.</h2>
           <p className="video-sub">Our in-house civil, electrical and plumbing teams work in perfect sync — from foundation to final handover — with no subcontracting and zero quality compromise.</p>
           <a href="#contact" className="btn-gold">Start Your Project</a>
         </div>
@@ -482,8 +482,8 @@ export default function App() {
         <div className="footer-cta-band">
           <div className="footer-cta-inner">
             <div>
-              <p className="footer-cta-eyebrow">READY TO BUILD?</p>
-              <h2 className="footer-cta-h2">Let us build your dream home.</h2>
+              <p className="footer-cta-eyebrow">YOUR DREAM, OUR COMMITMENT</p>
+              <h2 className="footer-cta-h2">Let's build your dream home together.</h2>
               <p className="footer-cta-sub">Free consultation. Transparent pricing. No surprises.</p>
             </div>
             <div className="footer-cta-btns">
