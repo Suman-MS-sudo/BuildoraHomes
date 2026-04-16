@@ -600,6 +600,7 @@
 .services-section { background: #fff; padding: 5rem 1.5rem; }
 
 /* Filter tabs */
+/* Tab bar: fade-right hint for horizontal scroll */
 .svc-tabs-wrap {
   max-width: 1220px;
   margin: 0 auto 2.2rem;
@@ -607,6 +608,7 @@
   -webkit-overflow-scrolling: touch;
   padding-bottom: 4px;
   scrollbar-width: none;
+  position: relative;
 }
 .svc-tabs-wrap::-webkit-scrollbar { display: none; }
 .svc-tabs {
@@ -1807,6 +1809,11 @@
   .stat-div { display: none; }
   /* Services: 1 col on mobile for readability */
   .svc-grid { grid-template-columns: 1fr; }
+  .services-section { padding: 3rem 1rem; }
+  .svc-tabs-wrap { margin-bottom: 1.5rem; }
+  /* Stack service card name + price vertically on mobile */
+  .svc-body-top { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+  .svc-price { white-space: normal; align-self: flex-start; font-size: 0.7rem; }
   .nav-links {
     display: none;
     position: fixed;
