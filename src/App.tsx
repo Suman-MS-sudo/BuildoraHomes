@@ -23,22 +23,22 @@ function useCountUp(target: number, duration = 1600) {
 }
 
 const SERVICES = [
-  { icon: "house",    cat: "Structure",  label: "Building Construction",        desc: "Full civil structure from foundation to roof slab",                price: "From ?1,999/sq ft (Material & Labour)" },
-  { icon: "layers",   cat: "Planning",   label: "Building Planning (2D)",       desc: "Detailed 2D architectural floor & site plans",                    price: "Approx. ?3/sq ft" },
-  { icon: "draft",    cat: "Planning",   label: "Structural Detailed Drawing",  desc: "Complete structural engineering drawings",                        price: "?8/sq ft" },
-  { icon: "elev",     cat: "Planning",   label: "Elevation Design",             desc: "Contemporary facade concepts & 3D renders (G+1)",                 price: "?3,000 (G+1)" },
-  { icon: "civil",    cat: "Structure",  label: "Civil Works",                  desc: "Foundation, columns & structural civil work",                     price: "From ?600/sq ft (Labour)" },
-  { icon: "labour",   cat: "Structure",  label: "Building Labour Works",        desc: "Civil, painting, electrical, plumbing, tiles laying & grill fittings", price: "?950/sq ft" },
-  { icon: "sump",     cat: "Structure",  label: "Sump Construction",            desc: "Underground water sump � 5,000 to 15,000 litres (including tiles)", price: "?21/sq ft (Material & Labour)" },
-  { icon: "septic",   cat: "Structure",  label: "Septic Tank",                  desc: "Septic tank construction � 5,000 to 15,000 litres",               price: "From ?15/sq ft (Material & Labour)" },
-  { icon: "cwall",    cat: "Structure",  label: "Compound Wall",                desc: "6-inch compound wall � strong perimeter security",                price: "?1,600/running ft (Material & Labour)" },
-  { icon: "zap",      cat: "MEP",        label: "Electrical Wiring",            desc: "Polycab ISI-standard electrical wiring � labour only",            price: "?35/sq ft (Labour)" },
-  { icon: "droplet",  cat: "MEP",        label: "Plumbing Work",                desc: "Complete plumbing with ISI-certified fittings � labour only",     price: "?35/sq ft (Labour)" },
-  { icon: "tile",     cat: "Finishes",   label: "Tiles Laying",                 desc: "Floor & wall tile laying with grout finish � labour only",       price: "?25�?50/sq ft (Labour)" },
-  { icon: "brush",    cat: "Finishes",   label: "Painting",                     desc: "Interior emulsion & exterior weather-coat � labour only",         price: "?6�?10/sq ft (Labour)" },
-  { icon: "upvc",     cat: "Finishes",   label: "UPVC Windows",                 desc: "Premium UPVC frame windows with glass glazing",                   price: "?350/sq ft" },
-  { icon: "cabinet",  cat: "Finishes",   label: "PVC Cupboard Works",           desc: "Modular PVC cupboards for kitchen, bedroom & storage",            price: "?200/sq ft" },
-  { icon: "consult",  cat: "Planning",   label: "Free Consultation",            desc: "Free site visit & consultation � within Chennai metro limits",    price: "Free" },
+  { icon: "house",    cat: "Structure",  label: "Building Construction",        desc: "Full civil structure from foundation to roof slab",                price: "From ₹1,999/sq ft (Material & Labour)" },
+  { icon: "layers",   cat: "Planning",   label: "Building Planning (2D)",       desc: "Detailed 2D architectural floor & site plans",                    price: "Approx. ₹3/sq ft" },
+  { icon: "draft",    cat: "Planning",   label: "Structural Detailed Drawing",  desc: "Complete structural engineering drawings",                        price: "₹8/sq ft" },
+  { icon: "elev",     cat: "Planning",   label: "Elevation Design",             desc: "Contemporary facade concepts & 3D renders (G+1)",                 price: "₹3,000 (G+1)" },
+  { icon: "civil",    cat: "Structure",  label: "Civil Works",                  desc: "Foundation, columns & structural civil work",                     price: "From ₹600/sq ft (Labour)" },
+  { icon: "labour",   cat: "Structure",  label: "Building Labour Works",        desc: "Civil, painting, electrical, plumbing, tiles laying & grill fittings", price: "₹950/sq ft" },
+  { icon: "sump",     cat: "Structure",  label: "Sump Construction",            desc: "Underground water sump – 5,000 to 15,000 litres (including tiles)", price: "₹21/sq ft (Material & Labour)" },
+  { icon: "septic",   cat: "Structure",  label: "Septic Tank",                  desc: "Septic tank construction – 5,000 to 15,000 litres",               price: "From ₹15/sq ft (Material & Labour)" },
+  { icon: "cwall",    cat: "Structure",  label: "Compound Wall",                desc: "6-inch compound wall – strong perimeter security",                price: "₹1,600/running ft (Material & Labour)" },
+  { icon: "zap",      cat: "MEP",        label: "Electrical Wiring",            desc: "Polycab ISI-standard electrical wiring – labour only",            price: "₹35/sq ft (Labour)" },
+  { icon: "droplet",  cat: "MEP",        label: "Plumbing Work",                desc: "Complete plumbing with ISI-certified fittings – labour only",     price: "₹35/sq ft (Labour)" },
+  { icon: "tile",     cat: "Finishes",   label: "Tiles Laying",                 desc: "Floor & wall tile laying with grout finish – labour only",       price: "₹25–₹50/sq ft (Labour)" },
+  { icon: "brush",    cat: "Finishes",   label: "Painting",                     desc: "Interior emulsion & exterior weather-coat – labour only",         price: "₹6–₹10/sq ft (Labour)" },
+  { icon: "upvc",     cat: "Finishes",   label: "UPVC Windows",                 desc: "Premium UPVC frame windows with glass glazing",                   price: "₹350/sq ft" },
+  { icon: "cabinet",  cat: "Finishes",   label: "PVC Cupboard Works",           desc: "Modular PVC cupboards for kitchen, bedroom & storage",            price: "₹200/sq ft" },
+  { icon: "consult",  cat: "Planning",   label: "Free Consultation",            desc: "Free site visit & consultation – within Chennai metro limits",    price: "Free" },
 ];
 
 const TESTIMONIALS = [
@@ -50,39 +50,39 @@ const TESTIMONIALS = [
 
 const PACKAGES = [
   {
-    id: "starter", tag: "Package 1", name: "Starter", price: "?1,799",
+    id: "starter", tag: "Package 1", name: "Starter", price: "₹1,799",
     iot: false, popular: false, badge: null as string | null,
     img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80",
-    desc: "Solid entry-level build with load-bearing structure and ISI-certified materials � ideal for budget-conscious first builds.",
+    desc: "Solid entry-level build with load-bearing structure and ISI-certified materials – ideal for budget-conscious first builds.",
     specs: [
       { cat: "Structure & Civil", items: [["Structure","Load Bearing"],["Brick","Solid Block"],["Concrete","M20 Grade"],["Cement","Priya / Maha or Equal Brand"],["Steel","Pulkit or Equal"],["Sand","M-Sand / P-Sand"],["Basement Height","3 ft"]] },
       { cat: "Plastering", items: [["Interior","Full wall area"],["Exterior","Full wall area"]] },
       { cat: "Electrical & Plumbing", items: [["Wiring","Polycab / Hosper ISI"],["Switches","Anchor / Hosper"],["Plumbing","ISI / ISO Certified"]] },
-      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L � Aqua-Tech / Sintex"],["Window & Door Frames","Malaysian Teak Wood"]] },
-      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ?50/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ?35/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ?35/sqft"],["Bathroom Flooring","Up to ?35/sqft"]] },
-      { cat: "Bathroom", items: [["Bathroom Door","Up to ?2,500"],["Fixtures per Unit","Up to ?5,000"]] },
-      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Single coat � JK / Birla"],["Painting","Single coat Asian Paints � Int. & Ext."],["False Ceiling","Not included"]] },
+      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L – Aqua-Tech / Sintex"],["Window & Door Frames","Malaysian Teak Wood"]] },
+      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ₹50/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ₹35/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ₹35/sqft"],["Bathroom Flooring","Up to ₹35/sqft"]] },
+      { cat: "Bathroom", items: [["Bathroom Door","Up to ₹2,500"],["Fixtures per Unit","Up to ₹5,000"]] },
+      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Single coat – JK / Birla"],["Painting","Single coat Asian Paints – Int. & Ext."],["False Ceiling","Not included"]] },
       { cat: "Kitchen & Loft", items: [["Modular Kitchen / Loft","Open Cuddapah Slabs"]] },
     ],
   },
   {
-    id: "classic", tag: "Package 2", name: "Classic", price: "?1,999",
+    id: "classic", tag: "Package 2", name: "Classic", price: "₹1,999",
     iot: false, popular: false, badge: null as string | null,
     img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80",
-    desc: "AAC block framed structure with MCR / GBR Fe550D steel, double-coat finishes, and Malaysian teak frames � a quality step up.",
+    desc: "AAC block framed structure with MCR / GBR Fe550D steel, double-coat finishes, and Malaysian teak frames – a quality step up.",
     specs: [
       { cat: "Structure & Civil", items: [["Structure","Framed Structure"],["Brick","AAC Block"],["Concrete","M20 Grade"],["Cement","Chettinad / Coromental or Equal"],["Steel","MCR / GBR Fe550D"],["Sand","M-Sand / P-Sand"],["Basement Height","3 ft"]] },
       { cat: "Plastering", items: [["Interior","Full wall area"],["Exterior","Full wall area"]] },
       { cat: "Electrical & Plumbing", items: [["Wiring","Polycab / Hosper ISI"],["Switches","Anchor / Hosper"],["Plumbing","ISI / ISO Certified"]] },
-      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L � Aqua-Tech / Sintex"],["Window & Door Frames","Malaysian Teak Wood"]] },
-      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ?60/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ?45/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ?35/sqft"],["Bathroom Flooring","Up to ?35/sqft"]] },
-      { cat: "Bathroom", items: [["Bathroom Door","Up to ?2,500"],["Fixtures per Unit","Up to ?8,000"]] },
-      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Double coat � JK / Birla"],["Painting","Double coat Asian Paints � Int. & Ext."],["False Ceiling","Not included"]] },
+      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L – Aqua-Tech / Sintex"],["Window & Door Frames","Malaysian Teak Wood"]] },
+      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ₹60/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ₹45/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ₹35/sqft"],["Bathroom Flooring","Up to ₹35/sqft"]] },
+      { cat: "Bathroom", items: [["Bathroom Door","Up to ₹2,500"],["Fixtures per Unit","Up to ₹8,000"]] },
+      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Double coat – JK / Birla"],["Painting","Double coat Asian Paints – Int. & Ext."],["False Ceiling","Not included"]] },
       { cat: "Kitchen & Loft", items: [["Modular Kitchen / Loft","Open Cuddapah Slabs"]] },
     ],
   },
   {
-    id: "premium", tag: "Package 3", name: "Premium", price: "?2,299",
+    id: "premium", tag: "Package 3", name: "Premium", price: "₹2,299",
     iot: false, popular: true, badge: "Most Popular",
     img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80",
     desc: "Chamber brick framed structure with ARS Fe550D steel, Dalmia cement, upgraded tiles, teak frames, and RCC double-coat finish.",
@@ -90,15 +90,15 @@ const PACKAGES = [
       { cat: "Structure & Civil", items: [["Structure","Framed Structure"],["Brick","Chamber Bricks"],["Concrete","M20 Grade"],["Cement","Dalmia or Equal Brand"],["Steel","ARS Fe550D"],["Sand","M-Sand / P-Sand"],["Basement Height","3 ft"]] },
       { cat: "Plastering", items: [["Interior","Full wall area"],["Exterior","Full wall area"]] },
       { cat: "Electrical & Plumbing", items: [["Wiring","Polycab / Hosper ISI"],["Switches","Anchor / Hosper"],["Plumbing","ISI / ISO Certified"]] },
-      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L � Aqua-Tech / Sintex"],["Window & Door Frames","Teak Wood"]] },
-      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ?70/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ?45/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ?45/sqft"],["Bathroom Flooring","Up to ?45/sqft"]] },
-      { cat: "Bathroom", items: [["Bathroom Door","Up to ?3,500"],["Fixtures per Unit","Up to ?8,000"]] },
-      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Double coat � JK / Birla (RCC)"],["Painting","Double coat Asian Paints (RCC)"],["False Ceiling","Not included"]] },
+      { cat: "Water & Door Frames", items: [["Water Tank","1,000 L – Aqua-Tech / Sintex"],["Window & Door Frames","Teak Wood"]] },
+      { cat: "Flooring & Tiles", items: [["Main Flooring","Ceramic up to ₹70/sqft"],["Kitchen Wall Tiles (3 ft ht)","Up to ₹45/sqft"],["Bathroom Wall Tiles (7 ft ht)","Up to ₹45/sqft"],["Bathroom Flooring","Up to ₹45/sqft"]] },
+      { cat: "Bathroom", items: [["Bathroom Door","Up to ₹3,500"],["Fixtures per Unit","Up to ₹8,000"]] },
+      { cat: "Finishes", items: [["Handrails","MS Handrails & Parapet Walls"],["Wall Putty","Double coat – JK / Birla (RCC)"],["Painting","Double coat Asian Paints (RCC)"],["False Ceiling","Not included"]] },
       { cat: "Kitchen & Loft", items: [["Modular Kitchen / Loft","Open Cuddapah Slabs"]] },
     ],
   },
   {
-    id: "smarthome", tag: "Package 4", name: "Smart Home", price: "?2,499",
+    id: "smarthome", tag: "Package 4", name: "Smart Home", price: "₹2,499",
     iot: true, popular: false, badge: null as string | null,
     img: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&auto=format&fit=crop&q=80",
     desc: "Wire-cut brick with TATA steel, Ultratech cement, granite flooring, SS glass railings, false ceiling, PVC modular kitchen, and IoT smart home pre-wiring.",
@@ -106,27 +106,27 @@ const PACKAGES = [
       { cat: "Structure & Civil", items: [["Structure","Framed Structure"],["Brick","Wire Cut Bricks"],["Concrete","M20 Grade"],["Cement","Ultratech"],["Steel","TATA Fe550D"],["Sand","M-Sand / P-Sand"],["Basement Height","3 ft"]] },
       { cat: "Plastering", items: [["Interior","Full wall area"],["Exterior","Full wall area"]] },
       { cat: "Electrical & Plumbing", items: [["Wiring","Polycab / Hosper ISI"],["Switches","Anchor / Hosper"],["Plumbing","ISI / ISO Certified"]] },
-      { cat: "Water & Door Frames", items: [["Water Tank","2,000 L � Aqua-Tech / Sintex"],["Window & Door Frames","Teak Wood"]] },
-      { cat: "Flooring & Tiles", items: [["Main Flooring","Granite up to ?95/sqft (factory)"],["Kitchen Wall Tiles (up to ceiling)","Up to ?55/sqft"],["Bathroom Wall Tiles (up to ceiling)","Up to ?55/sqft"],["Bathroom Flooring","Up to ?55/sqft"]] },
-      { cat: "Bathroom", items: [["Bathroom Door","Up to ?4,500"],["Fixtures per Unit","Up to ?15,000"]] },
-      { cat: "Finishes", items: [["Handrails","SS Glass Handrails & Parapet Walls"],["Wall Putty","Double coat � JK / Birla"],["Painting","Double coat Asian Paints � Int. & Ext."],["False Ceiling","Hall � up to ?75/sqft"]] },
+      { cat: "Water & Door Frames", items: [["Water Tank","2,000 L – Aqua-Tech / Sintex"],["Window & Door Frames","Teak Wood"]] },
+      { cat: "Flooring & Tiles", items: [["Main Flooring","Granite up to ₹95/sqft (factory)"],["Kitchen Wall Tiles (up to ceiling)","Up to ₹55/sqft"],["Bathroom Wall Tiles (up to ceiling)","Up to ₹55/sqft"],["Bathroom Flooring","Up to ₹55/sqft"]] },
+      { cat: "Bathroom", items: [["Bathroom Door","Up to ₹4,500"],["Fixtures per Unit","Up to ₹15,000"]] },
+      { cat: "Finishes", items: [["Handrails","SS Glass Handrails & Parapet Walls"],["Wall Putty","Double coat – JK / Birla"],["Painting","Double coat Asian Paints – Int. & Ext."],["False Ceiling","Hall – up to ₹75/sqft"]] },
       { cat: "Kitchen & Loft", items: [["Modular Kitchen","Open Cuddapah + PVC Modular Unit"],["Shutters / Loft","PVC Waterproof Shutters"]] },
-      { cat: "Smart Home (IoT)", items: [["Smart Lighting","App & voice control � pre-wired"],["Climate Control","Smart AC integration ready"],["Security","Smart doorbell & camera ready"],["Control Hub","Mobile app home management"]] },
+      { cat: "Smart Home (IoT)", items: [["Smart Lighting","App & voice control – pre-wired"],["Climate Control","Smart AC integration ready"],["Security","Smart doorbell & camera ready"],["Control Hub","Mobile app home management"]] },
     ],
   },
   {
-    id: "eliteiot", tag: "Package 5", name: "Elite IoT", price: "?2,999",
+    id: "eliteiot", tag: "Package 5", name: "Elite IoT", price: "₹2,999",
     iot: true, popular: false, badge: "Premium Pick",
     img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&auto=format&fit=crop&q=80",
-    desc: "The pinnacle � TATA steel, Ultratech cement, river sand, granite throughout, full false ceiling, WP plywood kitchen, and complete IoT home automation.",
+    desc: "The pinnacle – TATA steel, Ultratech cement, river sand, granite throughout, full false ceiling, WP plywood kitchen, and complete IoT home automation.",
     specs: [
       { cat: "Structure & Civil", items: [["Structure","Framed Structure"],["Brick","Wire Cut Bricks"],["Concrete","M20 Grade"],["Cement","Ultratech"],["Steel","TATA Fe550D"],["Sand","River Sand (premium grade)"],["Basement Height","3 ft"]] },
       { cat: "Plastering", items: [["Interior","Full wall area"],["Exterior","Full wall area"]] },
       { cat: "Electrical & Plumbing", items: [["Wiring","Polycab / Hosper ISI"],["Switches","Anchor / Hosper"],["Plumbing","ISI / ISO Certified"]] },
-      { cat: "Water & Door Frames", items: [["Water Tank","2,000 L � RCC / Brick overhead"],["Window & Door Frames","Teak Wood"]] },
-      { cat: "Flooring & Tiles", items: [["Main Flooring","Granite up to ?110/sqft (factory)"],["Kitchen Wall Tiles (up to ceiling)","Up to ?60/sqft"],["Bathroom Wall Tiles (up to ceiling)","Up to ?60/sqft"],["Bathroom Flooring","Up to ?60/sqft"]] },
-      { cat: "Bathroom", items: [["Bathroom Door","Up to ?6,000"],["Fixtures per Unit","Up to ?20,000"]] },
-      { cat: "Finishes", items: [["Handrails","SS Glass Handrails & Parapet Walls"],["Wall Putty","Double coat � JK / Birla"],["Painting","Double coat Asian Paints � Int. & Ext."],["False Ceiling","Hall + All Bedrooms � up to ?95/sqft"]] },
+      { cat: "Water & Door Frames", items: [["Water Tank","2,000 L – RCC / Brick overhead"],["Window & Door Frames","Teak Wood"]] },
+      { cat: "Flooring & Tiles", items: [["Main Flooring","Granite up to ₹110/sqft (factory)"],["Kitchen Wall Tiles (up to ceiling)","Up to ₹60/sqft"],["Bathroom Wall Tiles (up to ceiling)","Up to ₹60/sqft"],["Bathroom Flooring","Up to ₹60/sqft"]] },
+      { cat: "Bathroom", items: [["Bathroom Door","Up to ₹6,000"],["Fixtures per Unit","Up to ₹20,000"]] },
+      { cat: "Finishes", items: [["Handrails","SS Glass Handrails & Parapet Walls"],["Wall Putty","Double coat – JK / Birla"],["Painting","Double coat Asian Paints – Int. & Ext."],["False Ceiling","Hall + All Bedrooms – up to ₹95/sqft"]] },
       { cat: "Kitchen & Loft", items: [["Modular Kitchen","Open Cuddapah + WP Plywood Modular"],["Shutters / Loft","Waterproof Plywood Shutters"],["Countertop","Premium granite finish"]] },
       { cat: "Smart Home (IoT)", items: [["Full Automation","Lights, AC, locks & appliances"],["Security System","CCTV + smart doorbell + motion sensors"],["Smart Panel","Centralised home management hub"],["Premium App","Scheduling, scenes & energy monitor"]] },
     ],
@@ -191,7 +191,7 @@ export default function App() {
             </span>
             <span className="topbar-item topbar-hide-sm">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-              Mon�Sat: 9AM � 6PM
+              Mon–Sat: 9AM – 6PM
             </span>
           </div>
           <div className="topbar-right">
@@ -239,16 +239,16 @@ export default function App() {
         <div className="hero-grid-lines" />
         <div className="hero-inner">
           <div className="hero-copy">
-            <div className="hero-eyebrow"><span className="eyebrow-line" />Est. 2015 � Cholapuram, Ambattur, Chennai</div>
+            <div className="hero-eyebrow"><span className="eyebrow-line" />Est. 2015 – Cholapuram, Ambattur, Chennai</div>
             <h1 className="hero-h1">Your Dream,<br /><span className="hero-gold">Our Commitment.</span></h1>
-            <p className="hero-desc">Your dream home deserves the best � and Buildora Homes delivers it at prices that make sense. From foundation to smart home finish, serving Chennai families for over a decade, on time and on budget.</p>
+            <p className="hero-desc">Your dream home deserves the best – and Buildora Homes delivers it at prices that make sense. From foundation to smart home finish, serving Chennai families for over a decade, on time and on budget.</p>
             <div className="hero-btns">
               <a href="#pricing" className="btn-gold">View Our Packages</a>
               <a href="#client-intake" className="btn-gold">Fill Your Details</a>
               <a href="#contact"  className="btn-ghost">Book Free Consultation</a>
             </div>
             <div className="hero-trust">
-              <div className="trust-item"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /><span>4.9 � 200+ families</span></div>
+              <div className="trust-item"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /><span>4.9 – 200+ families</span></div>
               <span className="trust-sep" />
               <div className="trust-item"><CheckIcon /><span>ISO Quality Assured</span></div>
             </div>
@@ -286,9 +286,9 @@ export default function App() {
           <div className="about-copy">
             <p className="section-tag">ABOUT BUILDORA HOMES</p>
             <h2 className="section-h2">Your dream home, built with integrity and commitment.</h2>
-            <p className="about-text">Buildora Homes is a Chennai-based end-to-end residential construction company with 10+ years of turning client dreams into reality. From foundation to smart home integration � we manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
+            <p className="about-text">Buildora Homes is a Chennai-based end-to-end residential construction company with 10+ years of turning client dreams into reality. From foundation to smart home integration – we manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
             <ul className="about-points">
-              <li><span className="apoint-icon"><CheckIcon /></span>Transparent pricing � exact cost per sq ft, zero hidden charges</li>
+              <li><span className="apoint-icon"><CheckIcon /></span>Transparent pricing – exact cost per sq ft, zero hidden charges</li>
               <li><span className="apoint-icon"><CheckIcon /></span>Dedicated in-house teams for civil, electrical and plumbing</li>
               <li><span className="apoint-icon"><CheckIcon /></span>Smart home and IoT-ready construction packages available</li>
               <li><span className="apoint-icon"><CheckIcon /></span>On-time delivery with quality-controlled snag-free handover</li>
@@ -312,7 +312,7 @@ export default function App() {
         <div className="video-content">
           <p className="section-tag-light">CONSTRUCTION IN ACTION</p>
           <h2 className="video-h2">Your dream, built brick by brick.<br />Our commitment, from day one to handover.</h2>
-          <p className="video-sub">Our in-house civil, electrical and plumbing teams work in perfect sync � from foundation to final handover � with no subcontracting and zero quality compromise.</p>
+          <p className="video-sub">Our in-house civil, electrical and plumbing teams work in perfect sync – from foundation to final handover – with no subcontracting and zero quality compromise.</p>
           <a href="#contact" className="btn-gold">Start Your Project</a>
         </div>
       </section>
@@ -322,7 +322,7 @@ export default function App() {
         <div className="section-head">
           <p className="section-tag">OUR PACKAGES</p>
           <h2 className="section-h2">Transparent pricing,<br />no hidden costs.</h2>
-          <p className="section-sub">Five clearly defined packages � from entry-level to full smart home � each listing exact materials, brands and IoT features with complete spec transparency.</p>
+          <p className="section-sub">Five clearly defined packages – from entry-level to full smart home – each listing exact materials, brands and IoT features with complete spec transparency.</p>
         </div>
         <div className="pricing-grid">
           {PACKAGES.map((pkg) => (
@@ -334,7 +334,7 @@ export default function App() {
               <div className="pricing-card-img-wrap">
                 <img
                   src={pkg.img}
-                  alt={pkg.name + " � Buildora Homes"}
+                  alt={pkg.name + " – Buildora Homes"}
                   className="pricing-card-img"
                   loading="lazy"
                 />
@@ -517,7 +517,7 @@ export default function App() {
       <section className="process-section" id="process">
         <div className="section-head-dark">
           <p className="section-tag-light">HOW WE WORK</p>
-          <h2 className="section-h2-light">From consultation to keys �<br />we handle it all.</h2>
+          <h2 className="section-h2-light">From consultation to keys –<br />we handle it all.</h2>
         </div>
         <div className="process-row">
           {STEPS.map((step, i) => (
@@ -559,7 +559,7 @@ export default function App() {
                 <img src="/logo Buildora Homes.jpg" alt="Buildora Homes" className="logo-img logo-img-footer" />
                 <span className="footer-logo-name">Buildora Homes</span>
               </a>
-              <p className="footer-about">Your Dream, Our Commitment � building premium homes for Chennai families since 2015. Quality, transparency, and your dream are our mission.</p>
+              <p className="footer-about">Your Dream, Our Commitment – building premium homes for Chennai families since 2015. Quality, transparency, and your dream are our mission.</p>
               <div className="footer-socials">
                 <a href="#" className="fsoc" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
                 <a href="#" className="fsoc" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
@@ -588,7 +588,7 @@ export default function App() {
               <a href="tel:+919361949901">+91 93619 49901</a>
               <a href="tel:+917538839958">+91 75388 39958</a>
               <a href="mailto:admin@buildorahomes.co.in">admin@buildorahomes.co.in</a>
-              <p>Mon�Sat: 9AM � 6PM</p>
+              <p>Mon–Sat: 9AM – 6PM</p>
             </div>
           </div>
         </div>
@@ -600,7 +600,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* FLOATING WA � desktop only (hidden on mobile via CSS) */}
+      {/* FLOATING WA – desktop only (hidden on mobile via CSS) */}
       <a href="https://wa.me/919361949901" target="_blank" rel="noreferrer" className="wa-fab" aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor"><path d="M16 2C8.27 2 2 8.27 2 16c0 2.49.65 4.83 1.79 6.86L2 30l7.35-1.76A13.94 13.94 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm7.23 19.42c-.3.85-1.77 1.63-2.43 1.73-.65.1-1.48.14-2.38-.15-.55-.17-1.26-.4-2.17-.78-3.82-1.65-6.31-5.5-6.5-5.75-.18-.25-1.5-2-1.5-3.82 0-1.82.95-2.72 1.3-3.1.34-.37.74-.46.99-.46l.7.01c.23 0 .54-.09.84.64.3.74 1.03 2.56 1.12 2.74.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.22-.38.49-.54.65-.18.18-.37.37-.16.73.22.36.97 1.6 2.08 2.59 1.43 1.27 2.63 1.66 3 1.85.36.18.57.15.78-.09.22-.24.93-1.09 1.18-1.46.25-.37.5-.31.84-.19.34.12 2.15 1.01 2.51 1.2.36.18.6.27.69.42.09.15.09.87-.21 1.72z"/></svg>
       </a>
