@@ -73,16 +73,23 @@ else
   echo "     Make sure your nginx config has: server_name $DOMAIN $WWW_DOMAIN;"
 fi
 
-# -- 5. Request certificate -----------------------------------------
+# -- 5. Check DNS for www subdomain ---------------------------------
+INCLUDE_WWW=1
+if ! getent hosts "$WWW_DOMAIN" >/dev/null 2>&1; then
+  echo ""
+  echo "  WARNING: $WWW_DOMAIN has no DNS record - skipping www in cert."
+  echo "           Add an A record for www -> server IP and re-run to include it."
+  INCLUDE_WWW=0
+fi
+
+# -- 6. Request certificate -----------------------------------------
 echo ""
 echo "[4/5] Requesting Let's Encrypt certificate..."
-certbot --nginx \
-  --non-interactive \
-  --agree-tos \
-  --redirect \
-  --email "$EMAIL" \
-  -d "$DOMAIN" \
-  -d "$WWW_DOMAIN"
+CERTBOT_ARGS=(--nginx --non-interactive --agree-tos --redirect --email "$EMAIL" -d "$DOMAIN")
+if [ "$INCLUDE_WWW" = "1" ]; then
+  CERTBOT_ARGS+=(-d "$WWW_DOMAIN")
+fi
+certbot "${CERTBOT_ARGS[@]}"
 
 # -- 6. Enable auto-renew + restart ---------------------------------
 echo ""
