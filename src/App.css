@@ -1816,8 +1816,8 @@
   .svc-price { white-space: normal; align-self: flex-start; font-size: 0.7rem; }
   .nav-links {
     display: none;
-    position: fixed;
-    top: 106px;
+    position: absolute;
+    top: 100%;
     left: 0; right: 0;
     background: #fff;
     flex-direction: column;
@@ -1825,6 +1825,7 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     gap: 0.2rem;
     z-index: 200;
+    border-top: 1px solid rgba(0,0,0,0.06);
     border-bottom: 2px solid var(--gold);
   }
   .nav-links.nav-open { display: flex; }
@@ -1921,7 +1922,7 @@
   .logo-img { height: 36px; }
   .logo-name { font-size: 0.95rem; }
   .logo-tagline { font-size: 0.55rem; letter-spacing: 0.08em; }
-  .nav-links { top: 96px; }
+  /* nav-links anchored via top:100% — no fixed offset needed */
 
   /* Hero */
   .hero { min-height: auto; }
