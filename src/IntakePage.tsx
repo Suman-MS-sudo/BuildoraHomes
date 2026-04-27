@@ -73,6 +73,8 @@ export default function IntakePage() {
     additionalNotes: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
@@ -83,10 +85,47 @@ export default function IntakePage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    console.log('Client intake submitted', formData);
+    setSubmitting(true);
+    setErrorMsg('');
+
+    const fd = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value instanceof File) {
+        fd.append(key, value, value.name);
+      } else if (value !== null && value !== undefined && value !== '') {
+        fd.append(key, String(value));
+      }
+    });
+    // FormSubmit configuration
+    fd.append('_subject', `New Client Intake — ${formData.fullName || 'Unnamed'}`);
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    if (formData.email) fd.append('_replyto', formData.email);
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/admin@buildorahomes.co.in', {
+        method: 'POST',
+        body: fd,
+      });
+      if (!res.ok) throw new Error(`Server responded ${res.status}`);
+      const data = await res.json();
+      if (data.success === 'true' || data.success === true) {
+        setFormSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error
+          ? `Could not send: ${err.message}. Please try again or WhatsApp us.`
+          : 'Could not send. Please try again or WhatsApp us.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -100,7 +139,10 @@ export default function IntakePage() {
       <div className="intake-form-wrap">
         <form className="intake-form" onSubmit={handleSubmit}>
           {formSubmitted && (
-            <div className="form-success">Thank you! Your project details have been captured. We will contact you shortly.</div>
+            <div className="form-success">Thank you! Your project details have been sent to our team. We will contact you shortly.</div>
+          )}
+          {errorMsg && !formSubmitted && (
+            <div className="form-success" style={{ background: '#fdecea', color: '#9b1c1c', borderColor: '#f5c2c0' }}>{errorMsg}</div>
           )}
 
           <div className="form-grid">
@@ -276,7 +318,7 @@ export default function IntakePage() {
               <textarea name="additionalNotes" value={formData.additionalNotes} onChange={handleChange} className="form-textarea" rows={4} placeholder="Share any other important details from the intake PDF."></textarea>
             </label>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button type="submit" className="btn-gold form-submit">Submit Your Details</button>
+              <button type="submit" className="btn-gold form-submit" disabled={submitting}>{submitting ? 'Sending…' : 'Submit Your Details'}</button>
               <a href="#top" className="btn-text-link">Back to Home</a>
             </div>
           </div>
