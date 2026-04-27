@@ -247,7 +247,7 @@ export default function PlannerPage() {
               Open Home Planner ↗
             </a>
             <a
-              href="https://wa.me/919361949901?text=Hi%2C%20I%20have%20been%20browsing%20home%20design%20ideas%20on%20your%20website%20and%20want%20a%20construction%20quote."
+              href="https://wa.me/917538839958?text=Hi%2C%20I%20have%20been%20browsing%20home%20design%20ideas%20on%20your%20website%20and%20want%20a%20construction%20quote."
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
@@ -315,7 +315,7 @@ export default function PlannerPage() {
                 Design This Room in Planner ↗
               </a>
               <a
-                href="https://wa.me/919361949901?text=Hi%2C%20I%20like%20these%20room%20designs%20from%20Buildora%20Homes.%20Can%20I%20get%20a%20quote%3F"
+                href="https://wa.me/917538839958?text=Hi%2C%20I%20like%20these%20room%20designs%20from%20Buildora%20Homes.%20Can%20I%20get%20a%20quote%3F"
                 target="_blank"
                 rel="noreferrer"
                 className="room-modal-wa-btn"
