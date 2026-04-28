@@ -75,6 +75,8 @@ export default function IntakePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [progressPct, setProgressPct] = useState(0);
+  const [progressLabel, setProgressLabel] = useState('');
 
   const APPS_SCRIPT_URL =
     'https://script.google.com/macros/s/AKfycbyKjcyXIPzbKe3_BEugDMeIbK74EONB6U8bSgH_yiivBj9wjtY3PB4FEEuOqn-CLcHq9Q/exec';
@@ -105,6 +107,8 @@ export default function IntakePage() {
     e.preventDefault();
     setSubmitting(true);
     setErrorMsg('');
+    setProgressPct(0);
+    setProgressLabel('Preparing your files…');
 
     try {
       const fileFields: (keyof IntakeFormData)[] = [
@@ -117,6 +121,8 @@ export default function IntakePage() {
       ];
 
       const files = [] as { field: string; name: string; mime: string; data: string }[];
+      let prepared = 0;
+      const totalFiles = fileFields.filter((f) => formData[f]).length;
       for (const field of fileFields) {
         const f = formData[field] as File | null;
         if (f) {
@@ -126,6 +132,12 @@ export default function IntakePage() {
             mime: f.type || 'application/octet-stream',
             data: await fileToBase64(f),
           });
+          prepared += 1;
+          if (totalFiles > 0) {
+            // Cap prep progress at 20% — leave 80% for the upload itself
+            setProgressPct(Math.round((prepared / totalFiles) * 20));
+            setProgressLabel(`Preparing file ${prepared} of ${totalFiles}…`);
+          }
         }
       }
 
@@ -142,32 +154,40 @@ export default function IntakePage() {
         files,
       };
 
-      // Fire the request without awaiting it. We do NOT use keepalive (browsers
-      // cap keepalive bodies at 64KB and silently drop oversized payloads —
-      // which would cause "success" UI but nothing reaching Drive). We also do
-      // NOT use mode:'no-cors' so any real errors actually surface in console.
-      // The fetch continues in the background as long as the tab stays open.
-      fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-      })
-        .then((res) => res.json().catch(() => ({ ok: false, error: 'Invalid server response' })))
-        .then((json) => {
-          if (!json.ok) {
-            // eslint-disable-next-line no-console
-            console.warn('Intake submission server error:', json.error);
-          } else {
-            // eslint-disable-next-line no-console
-            console.log('Intake submission completed:', json);
-          }
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.warn('Intake submission network error:', err);
-        });
+      setProgressLabel('Uploading to secure server…');
 
-      // Show success immediately — user can keep browsing while upload finishes
+      // Use XHR so we can report real upload progress to the user.
+      const json = await new Promise<{ ok: boolean; error?: string }>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', APPS_SCRIPT_URL, true);
+        xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+        xhr.upload.onprogress = (ev) => {
+          if (ev.lengthComputable) {
+            // Map upload 0..100% into 20..95% of overall bar
+            const uploadPct = (ev.loaded / ev.total) * 75;
+            setProgressPct(Math.round(20 + uploadPct));
+            if (ev.loaded >= ev.total) {
+              setProgressLabel('Saving to Google Drive…');
+            }
+          }
+        };
+        xhr.onload = () => {
+          try {
+            const parsed = JSON.parse(xhr.responseText || '{}');
+            resolve(parsed);
+          } catch {
+            resolve({ ok: false, error: 'Invalid server response' });
+          }
+        };
+        xhr.onerror = () => reject(new Error('Network error'));
+        xhr.ontimeout = () => reject(new Error('Request timed out'));
+        xhr.send(JSON.stringify(payload));
+      });
+
+      if (!json.ok) throw new Error(json.error || 'Submission failed');
+
+      setProgressPct(100);
+      setProgressLabel('Done!');
       setFormSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
@@ -193,10 +213,23 @@ export default function IntakePage() {
         <form className="intake-form" onSubmit={handleSubmit}>
           {formSubmitted && (
             <div className="form-success">
-              Thank you! Your project details have been sent to our team. We will contact you shortly.
-              <div style={{ marginTop: 8, fontSize: '0.9em', opacity: 0.85 }}>
-                Please keep this tab open for a few more seconds while your files finish uploading in the background.
+              Thank you! Your project details and files have been received. We will contact you shortly.
+            </div>
+          )}
+          {submitting && !formSubmitted && (
+            <div className="form-success" style={{ background: '#eef6ff', color: '#1c3d6b', borderColor: '#cfe1f8' }}>
+              <div style={{ marginBottom: 8, fontWeight: 600 }}>{progressLabel || 'Submitting…'}</div>
+              <div style={{ height: 8, width: '100%', background: '#dbe8f6', borderRadius: 4, overflow: 'hidden' }}>
+                <div
+                  style={{
+                    height: '100%',
+                    width: `${progressPct}%`,
+                    background: '#1c66c9',
+                    transition: 'width 0.25s ease',
+                  }}
+                />
               </div>
+              <div style={{ marginTop: 6, fontSize: '0.85em', opacity: 0.8 }}>{progressPct}% — please don't close this tab.</div>
             </div>
           )}
           {errorMsg && !formSubmitted && (
@@ -376,7 +409,7 @@ export default function IntakePage() {
               <textarea name="additionalNotes" value={formData.additionalNotes} onChange={handleChange} className="form-textarea" rows={4} placeholder="Share any other important details from the intake PDF."></textarea>
             </label>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button type="submit" className="btn-gold form-submit" disabled={submitting}>{submitting ? 'Sending…' : 'Submit Your Details'}</button>
+              <button type="submit" className="btn-gold form-submit" disabled={submitting}>{submitting ? `Sending… ${progressPct}%` : 'Submit Your Details'}</button>
               <a href="#top" className="btn-text-link">Back to Home</a>
             </div>
           </div>
