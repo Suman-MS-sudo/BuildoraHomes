@@ -142,16 +142,22 @@ export default function IntakePage() {
         files,
       };
 
-      // Use text/plain content-type to avoid CORS preflight; Apps Script reads e.postData.contents.
-      const res = await fetch(APPS_SCRIPT_URL, {
+      // Fire-and-forget: send the request with keepalive so the browser keeps it
+      // alive even after we move on. The user sees instant success; the upload
+      // continues in the background. Errors are silently logged (the admin will
+      // notice missing emails). Use text/plain to skip CORS preflight.
+      fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
+        keepalive: true,
+        mode: 'no-cors',
+      }).catch((err) => {
+        // eslint-disable-next-line no-console
+        console.warn('Background intake submission error:', err);
       });
 
-      const json = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
-      if (!json.ok) throw new Error(json.error || 'Submission failed');
-
+      // Show success immediately
       setFormSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
