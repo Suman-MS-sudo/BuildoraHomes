@@ -142,22 +142,32 @@ export default function IntakePage() {
         files,
       };
 
-      // Fire-and-forget: send the request with keepalive so the browser keeps it
-      // alive even after we move on. The user sees instant success; the upload
-      // continues in the background. Errors are silently logged (the admin will
-      // notice missing emails). Use text/plain to skip CORS preflight.
+      // Fire the request without awaiting it. We do NOT use keepalive (browsers
+      // cap keepalive bodies at 64KB and silently drop oversized payloads —
+      // which would cause "success" UI but nothing reaching Drive). We also do
+      // NOT use mode:'no-cors' so any real errors actually surface in console.
+      // The fetch continues in the background as long as the tab stays open.
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
-        keepalive: true,
-        mode: 'no-cors',
-      }).catch((err) => {
-        // eslint-disable-next-line no-console
-        console.warn('Background intake submission error:', err);
-      });
+      })
+        .then((res) => res.json().catch(() => ({ ok: false, error: 'Invalid server response' })))
+        .then((json) => {
+          if (!json.ok) {
+            // eslint-disable-next-line no-console
+            console.warn('Intake submission server error:', json.error);
+          } else {
+            // eslint-disable-next-line no-console
+            console.log('Intake submission completed:', json);
+          }
+        })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.warn('Intake submission network error:', err);
+        });
 
-      // Show success immediately
+      // Show success immediately — user can keep browsing while upload finishes
       setFormSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
@@ -182,7 +192,12 @@ export default function IntakePage() {
       <div className="intake-form-wrap">
         <form className="intake-form" onSubmit={handleSubmit}>
           {formSubmitted && (
-            <div className="form-success">Thank you! Your project details have been sent to our team. We will contact you shortly.</div>
+            <div className="form-success">
+              Thank you! Your project details have been sent to our team. We will contact you shortly.
+              <div style={{ marginTop: 8, fontSize: '0.9em', opacity: 0.85 }}>
+                Please keep this tab open for a few more seconds while your files finish uploading in the background.
+              </div>
+            </div>
           )}
           {errorMsg && !formSubmitted && (
             <div className="form-success" style={{ background: '#fdecea', color: '#9b1c1c', borderColor: '#f5c2c0' }}>{errorMsg}</div>
