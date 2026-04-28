@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 type IntakeFormData = {
   fullName: string;
@@ -72,9 +72,9 @@ export default function IntakePage() {
     otherFiles: null,
     additionalNotes: '',
   });
-  const [formSubmitted] = useState(
-    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('submitted') === '1'
-  );
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const iframeLoadedOnce = useRef(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
@@ -85,7 +85,22 @@ export default function IntakePage() {
     }
   };
 
-  // No JS submit handler — we let the browser POST natively to FormSubmit so file uploads are included.
+  // Form posts natively (multipart/form-data) into a hidden iframe so files are sent
+  // and CORS is bypassed. We listen for the iframe 'load' event to confirm the
+  // server received the request, then show the success message.
+  const handleSubmit = () => {
+    setSubmitting(true);
+  };
+  const handleIframeLoad = () => {
+    // First load fires when iframe initially mounts; ignore it.
+    if (!iframeLoadedOnce.current) {
+      iframeLoadedOnce.current = true;
+      return;
+    }
+    setSubmitting(false);
+    setFormSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section className="intake-section">
@@ -96,20 +111,21 @@ export default function IntakePage() {
       </div>
 
       <div className="intake-form-wrap">
+        {/* Hidden target so the cross-origin POST doesn't navigate the page. */}
+        <iframe
+          name="intake-sink"
+          title="intake-sink"
+          style={{ display: 'none' }}
+          onLoad={handleIframeLoad}
+        />
         <form
           className="intake-form"
-          action="https://formsubmit.co/admin@buildorahomes.co.in"
+          action="https://script.google.com/macros/s/AKfycbyKjcyXIPzbKe3_BEugDMeIbK74EONB6U8bSgH_yiivBj9wjtY3PB4FEEuOqn-CLcHq9Q/exec"
           method="POST"
           encType="multipart/form-data"
+          target="intake-sink"
+          onSubmit={handleSubmit}
         >
-          <input type="hidden" name="_subject" value="New Client Intake — Buildora Homes" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input
-            type="hidden"
-            name="_next"
-            value={typeof window !== 'undefined' ? `${window.location.origin}/?submitted=1#client-intake` : '/'}
-          />
           {formSubmitted && (
             <div className="form-success">Thank you! Your project details have been sent to our team. We will contact you shortly.</div>
           )}
@@ -287,7 +303,7 @@ export default function IntakePage() {
               <textarea name="additionalNotes" value={formData.additionalNotes} onChange={handleChange} className="form-textarea" rows={4} placeholder="Share any other important details from the intake PDF."></textarea>
             </label>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button type="submit" className="btn-gold form-submit">Submit Your Details</button>
+              <button type="submit" className="btn-gold form-submit" disabled={submitting}>{submitting ? 'Sending…' : 'Submit Your Details'}</button>
               <a href="#top" className="btn-text-link">Back to Home</a>
             </div>
           </div>
