@@ -156,33 +156,36 @@ export default function IntakePage() {
 
       setProgressLabel('Uploading to secure server…');
 
-      // Use XHR so we can report real upload progress to the user.
-      const json = await new Promise<{ ok: boolean; error?: string }>((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', APPS_SCRIPT_URL, true);
-        xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
-        xhr.upload.onprogress = (ev) => {
-          if (ev.lengthComputable) {
-            // Map upload 0..100% into 20..95% of overall bar
-            const uploadPct = (ev.loaded / ev.total) * 75;
-            setProgressPct(Math.round(20 + uploadPct));
-            if (ev.loaded >= ev.total) {
-              setProgressLabel('Saving to Google Drive…');
-            }
-          }
-        };
-        xhr.onload = () => {
-          try {
-            const parsed = JSON.parse(xhr.responseText || '{}');
-            resolve(parsed);
-          } catch {
-            resolve({ ok: false, error: 'Invalid server response' });
-          }
-        };
-        xhr.onerror = () => reject(new Error('Network error'));
-        xhr.ontimeout = () => reject(new Error('Request timed out'));
-        xhr.send(JSON.stringify(payload));
-      });
+      // We can't use real XHR upload progress here: attaching upload.onprogress
+      // makes the request "non-simple" and triggers a CORS preflight, which
+      // Apps Script does not handle. Instead we simulate progress paced on
+      // payload size (assume ~80 KB/s effective throughput — conservative for
+      // mobile) and snap to 100% when the server actually responds.
+      const bodyStr = JSON.stringify(payload);
+      const estSeconds = Math.max(3, bodyStr.length / (80 * 1024));
+      let simPct = 20;
+      const simTarget = 92; // never reach 100% via simulation
+      const tickMs = 250;
+      const incPerTick = ((simTarget - simPct) / estSeconds) * (tickMs / 1000);
+      const progressTimer = window.setInterval(() => {
+        simPct = Math.min(simTarget, simPct + incPerTick);
+        setProgressPct(Math.round(simPct));
+        if (simPct >= simTarget * 0.95) {
+          setProgressLabel('Saving to Google Drive…');
+        }
+      }, tickMs);
+
+      let json: { ok: boolean; error?: string };
+      try {
+        const res = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: bodyStr,
+        });
+        json = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
+      } finally {
+        window.clearInterval(progressTimer);
+      }
 
       if (!json.ok) throw new Error(json.error || 'Submission failed');
 
