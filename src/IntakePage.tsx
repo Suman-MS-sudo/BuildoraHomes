@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 type IntakeFormData = {
   fullName: string;
@@ -74,7 +74,23 @@ export default function IntakePage() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const iframeLoadedOnce = useRef(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const APPS_SCRIPT_URL =
+    'https://script.google.com/macros/s/AKfycbyKjcyXIPzbKe3_BEugDMeIbK74EONB6U8bSgH_yiivBj9wjtY3PB4FEEuOqn-CLcHq9Q/exec';
+
+  const fileToBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        // strip the "data:<mime>;base64," prefix
+        const idx = result.indexOf(',');
+        resolve(idx >= 0 ? result.slice(idx + 1) : result);
+      };
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+    });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
@@ -85,21 +101,68 @@ export default function IntakePage() {
     }
   };
 
-  // Form posts natively (multipart/form-data) into a hidden iframe so files are sent
-  // and CORS is bypassed. We listen for the iframe 'load' event to confirm the
-  // server received the request, then show the success message.
-  const handleSubmit = () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setSubmitting(true);
-  };
-  const handleIframeLoad = () => {
-    // First load fires when iframe initially mounts; ignore it.
-    if (!iframeLoadedOnce.current) {
-      iframeLoadedOnce.current = true;
-      return;
+    setErrorMsg('');
+
+    try {
+      const fileFields: (keyof IntakeFormData)[] = [
+        'ownershipDoc',
+        'sitePlan',
+        'architecturalDrawings',
+        'identityProof',
+        'photoOfPlot',
+        'otherFiles',
+      ];
+
+      const files = [] as { field: string; name: string; mime: string; data: string }[];
+      for (const field of fileFields) {
+        const f = formData[field] as File | null;
+        if (f) {
+          files.push({
+            field: String(field),
+            name: f.name,
+            mime: f.type || 'application/octet-stream',
+            data: await fileToBase64(f),
+          });
+        }
+      }
+
+      const fields: Record<string, string> = {};
+      Object.entries(formData).forEach(([k, v]) => {
+        if (!(v instanceof File) && v !== null && v !== undefined && v !== '') {
+          fields[k] = String(v);
+        }
+      });
+
+      const payload = {
+        fullName: formData.fullName,
+        fields,
+        files,
+      };
+
+      // Use text/plain content-type to avoid CORS preflight; Apps Script reads e.postData.contents.
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      });
+
+      const json = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
+      if (!json.ok) throw new Error(json.error || 'Submission failed');
+
+      setFormSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error
+          ? `Could not send: ${err.message}. Please try again or WhatsApp us.`
+          : 'Could not send. Please try again or WhatsApp us.'
+      );
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
-    setFormSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -111,23 +174,12 @@ export default function IntakePage() {
       </div>
 
       <div className="intake-form-wrap">
-        {/* Hidden target so the cross-origin POST doesn't navigate the page. */}
-        <iframe
-          name="intake-sink"
-          title="intake-sink"
-          style={{ display: 'none' }}
-          onLoad={handleIframeLoad}
-        />
-        <form
-          className="intake-form"
-          action="https://script.google.com/macros/s/AKfycbyKjcyXIPzbKe3_BEugDMeIbK74EONB6U8bSgH_yiivBj9wjtY3PB4FEEuOqn-CLcHq9Q/exec"
-          method="POST"
-          encType="multipart/form-data"
-          target="intake-sink"
-          onSubmit={handleSubmit}
-        >
+        <form className="intake-form" onSubmit={handleSubmit}>
           {formSubmitted && (
             <div className="form-success">Thank you! Your project details have been sent to our team. We will contact you shortly.</div>
+          )}
+          {errorMsg && !formSubmitted && (
+            <div className="form-success" style={{ background: '#fdecea', color: '#9b1c1c', borderColor: '#f5c2c0' }}>{errorMsg}</div>
           )}
 
           <div className="form-grid">
