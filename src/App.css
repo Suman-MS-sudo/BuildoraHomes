@@ -2068,3 +2068,91 @@
   .hero-btns .btn-gold, .hero-btns .btn-ghost { flex: 1 1 100%; }
   .stat strong { font-size: 1.2rem !important; }
 }
+
+/* ============================================================
+   THREE SERVICE PILLARS — New Construction / Renovation / Repairs
+   ============================================================ */
+.pillars-section {
+  padding: 90px 6vw 90px;
+  background: linear-gradient(180deg, #fafaf7 0%, #ffffff 100%);
+}
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1280px;
+  margin: 40px auto 0;
+}
+.pillar-card {
+  background: #fff;
+  border: 1px solid #ece7dc;
+  border-radius: 14px;
+  padding: 36px 30px 32px;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,0.18);
+  border-color: #d9b96a;
+}
+.pillar-card-mid {
+  background: linear-gradient(180deg, #fffaee 0%, #ffffff 80%);
+  border-color: #d9b96a;
+}
+.pillar-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #d9b96a;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.pillar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1c1c1c;
+  margin: 0 0 12px;
+}
+.pillar-desc {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+.pillar-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  flex: 1;
+}
+.pillar-points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+}
+.pillar-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 12px;
+  height: 2px;
+  background: #d9b96a;
+}
+.pillar-card .btn-text-link {
+  align-self: flex-start;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+@media (max-width: 900px) {
+  .pillars-grid { grid-template-columns: 1fr; gap: 18px; }
+  .pillars-section { padding: 60px 5vw 60px; }
+  .pillar-card { padding: 28px 22px 26px; }
+}

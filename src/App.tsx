@@ -23,28 +23,49 @@ function useCountUp(target: number, duration = 1600) {
 }
 
 const SERVICES = [
-  { icon: "house",    cat: "Structure",  label: "Building Construction",        desc: "Full civil structure from foundation to roof slab",                price: "From ₹1,999/sq ft (Material & Labour)" },
-  { icon: "layers",   cat: "Planning",   label: "Building Planning (2D)",       desc: "Detailed 2D architectural floor & site plans",                    price: "Approx. ₹3/sq ft" },
-  { icon: "draft",    cat: "Planning",   label: "Structural Detailed Drawing",  desc: "Complete structural engineering drawings",                        price: "₹8/sq ft" },
-  { icon: "elev",     cat: "Planning",   label: "Elevation Design",             desc: "Contemporary facade concepts & 3D renders (G+1)",                 price: "₹3,000 (G+1)" },
-  { icon: "civil",    cat: "Structure",  label: "Civil Works",                  desc: "Foundation, columns & structural civil work",                     price: "From ₹600/sq ft (Labour)" },
-  { icon: "labour",   cat: "Structure",  label: "Building Labour Works",        desc: "Civil, painting, electrical, plumbing, tiles laying & grill fittings", price: "₹950/sq ft" },
-  { icon: "sump",     cat: "Structure",  label: "Sump Construction",            desc: "Underground water sump – 5,000 to 15,000 litres (including tiles)", price: "₹21/sq ft (Material & Labour)" },
-  { icon: "septic",   cat: "Structure",  label: "Septic Tank",                  desc: "Septic tank construction – 5,000 to 15,000 litres",               price: "From ₹15/sq ft (Material & Labour)" },
-  { icon: "cwall",    cat: "Structure",  label: "Compound Wall",                desc: "6-inch compound wall – strong perimeter security",                price: "₹1,600/running ft (Material & Labour)" },
-  { icon: "zap",      cat: "MEP",        label: "Electrical Wiring",            desc: "Polycab ISI-standard electrical wiring – labour only",            price: "₹35/sq ft (Labour)" },
-  { icon: "droplet",  cat: "MEP",        label: "Plumbing Work",                desc: "Complete plumbing with ISI-certified fittings – labour only",     price: "₹35/sq ft (Labour)" },
-  { icon: "tile",     cat: "Finishes",   label: "Tiles Laying",                 desc: "Floor & wall tile laying with grout finish – labour only",       price: "₹25–₹50/sq ft (Labour)" },
-  { icon: "brush",    cat: "Finishes",   label: "Painting",                     desc: "Interior emulsion & exterior weather-coat – labour only",         price: "₹6–₹10/sq ft (Labour)" },
-  { icon: "upvc",     cat: "Finishes",   label: "UPVC Windows",                 desc: "Premium UPVC frame windows with glass glazing",                   price: "₹350/sq ft" },
-  { icon: "cabinet",  cat: "Finishes",   label: "PVC Cupboard Works",           desc: "Modular PVC cupboards for kitchen, bedroom & storage",            price: "₹200/sq ft" },
-  { icon: "consult",  cat: "Planning",   label: "Free Consultation",            desc: "Free site visit & consultation – within Chennai metro limits",    price: "Free" },
+  // ── NEW HOME CONSTRUCTION ────────────────────────────────────────────────
+  { icon: "house",    cat: "Construction",  label: "New Home Construction",        desc: "Full civil structure from foundation to roof slab",                price: "From ₹1,999/sq ft (Material & Labour)" },
+  { icon: "civil",    cat: "Construction",  label: "Civil Works",                  desc: "Foundation, columns & structural civil work",                     price: "From ₹600/sq ft (Labour)" },
+  { icon: "labour",   cat: "Construction",  label: "Building Labour Works",        desc: "Civil, painting, electrical, plumbing, tiles laying & grill fittings", price: "₹950/sq ft" },
+  { icon: "sump",     cat: "Construction",  label: "Sump Construction",            desc: "Underground water sump – 5,000 to 15,000 litres (including tiles)", price: "₹21/sq ft (Material & Labour)" },
+  { icon: "septic",   cat: "Construction",  label: "Septic Tank",                  desc: "Septic tank construction – 5,000 to 15,000 litres",               price: "From ₹15/sq ft (Material & Labour)" },
+  { icon: "cwall",    cat: "Construction",  label: "Compound Wall",                desc: "6-inch compound wall – strong perimeter security",                price: "₹1,600/running ft (Material & Labour)" },
+
+  // ── PLANNING & DESIGN (used across all three service lines) ─────────────
+  { icon: "layers",   cat: "Planning",      label: "Building Planning (2D)",       desc: "Detailed 2D architectural floor & site plans",                    price: "Approx. ₹3/sq ft" },
+  { icon: "draft",    cat: "Planning",      label: "Structural Detailed Drawing",  desc: "Complete structural engineering drawings",                        price: "₹8/sq ft" },
+  { icon: "elev",     cat: "Planning",      label: "Elevation Design",             desc: "Contemporary facade concepts & 3D renders (G+1)",                 price: "₹3,000 (G+1)" },
+  { icon: "consult",  cat: "Planning",      label: "Free Consultation",            desc: "Free site visit & consultation – within Chennai metro limits",    price: "Free" },
+
+  // ── HOME RENOVATION & REMODELLING ───────────────────────────────────────
+  { icon: "house",    cat: "Renovation",    label: "Full Home Renovation",         desc: "Complete makeover of existing homes – layout, finishes, MEP",      price: "On site survey" },
+  { icon: "tile",     cat: "Renovation",    label: "Kitchen Renovation",           desc: "Modular kitchen, slab, tiling, plumbing & electrical upgrade",     price: "Custom quote" },
+  { icon: "droplet",  cat: "Renovation",    label: "Bathroom Renovation",          desc: "Sanitaryware, tiles, waterproofing & plumbing redo",               price: "Custom quote" },
+  { icon: "elev",     cat: "Renovation",    label: "Facade & Elevation Refresh",   desc: "Re-styled exteriors, new cladding, modern look for older homes",   price: "Custom quote" },
+  { icon: "cabinet",  cat: "Renovation",    label: "Interior Remodelling",         desc: "Modular cupboards, false ceiling, lighting & finishes upgrade",    price: "Custom quote" },
+
+  // ── EXISTING HOME REPAIRS & FIXING ──────────────────────────────────────
+  { icon: "civil",    cat: "Repairs",       label: "Structural Repairs",           desc: "Cracks, slab leakage, beam/column reinforcement & strengthening",  price: "On site survey" },
+  { icon: "droplet",  cat: "Repairs",       label: "Waterproofing & Leakage Fix",  desc: "Roof, terrace, bathroom & sump waterproofing solutions",           price: "From ₹40/sq ft" },
+  { icon: "brush",    cat: "Repairs",       label: "Wall Crack & Plaster Repair",  desc: "Crack stitching, re-plastering and finish restoration",            price: "Custom quote" },
+  { icon: "zap",      cat: "Repairs",       label: "Electrical Rewiring & Fix",    desc: "Old wiring replacement, switchboard & MCB upgrades",               price: "Custom quote" },
+  { icon: "droplet",  cat: "Repairs",       label: "Plumbing Repairs",             desc: "Pipe leakage, choke clearance, tank & fitting replacement",        price: "Custom quote" },
+
+  // ── MEP (used across construction & repairs) ────────────────────────────
+  { icon: "zap",      cat: "MEP",           label: "Electrical Wiring",            desc: "Polycab ISI-standard electrical wiring – labour only",            price: "₹35/sq ft (Labour)" },
+  { icon: "droplet",  cat: "MEP",           label: "Plumbing Work",                desc: "Complete plumbing with ISI-certified fittings – labour only",     price: "₹35/sq ft (Labour)" },
+
+  // ── FINISHES (used across all three) ────────────────────────────────────
+  { icon: "tile",     cat: "Finishes",      label: "Tiles Laying",                 desc: "Floor & wall tile laying with grout finish – labour only",       price: "₹25–₹50/sq ft (Labour)" },
+  { icon: "brush",    cat: "Finishes",      label: "Painting",                     desc: "Interior emulsion & exterior weather-coat – labour only",         price: "₹6–₹10/sq ft (Labour)" },
+  { icon: "upvc",     cat: "Finishes",      label: "UPVC Windows",                 desc: "Premium UPVC frame windows with glass glazing",                   price: "₹350/sq ft" },
+  { icon: "cabinet",  cat: "Finishes",      label: "PVC Cupboard Works",           desc: "Modular PVC cupboards for kitchen, bedroom & storage",            price: "₹200/sq ft" },
 ];
 
 const TESTIMONIALS = [
-  { name: "Rajesh Kumar",  place: "Ambattur, Chennai", stars: 5, text: "Buildora Homes built our 2BHK in just 9 months. Transparent costing, zero surprises, and the quality is outstanding. Highly recommend to anyone planning to build." },
-  { name: "Priya Sundar",  place: "Anna Nagar, Chennai", stars: 5, text: "We chose the Smart Home plan and the IoT automation and premium finish exceeded every expectation. Worth every rupee. The team is professional and punctual." },
-  { name: "Murugan S.",    place: "Padi, Chennai",      stars: 5, text: "Professional team, clean site management, on-time handover. Our G+1 house turned out exactly as we dreamed. Cannot thank Buildora Homes enough." },
+  { name: "Rajesh Kumar",  place: "Ambattur, Chennai",    stars: 5, text: "Buildora Homes built our 2BHK in just 9 months. Transparent costing, zero surprises, and the quality is outstanding. Highly recommend to anyone planning to build." },
+  { name: "Priya Sundar",  place: "Anna Nagar, Chennai",  stars: 5, text: "We renovated our 20-year-old home end-to-end with Buildora – new kitchen, bathrooms, electricals and a fresh facade. The team handled everything in-house and finished on schedule." },
+  { name: "Murugan S.",    place: "Padi, Chennai",        stars: 5, text: "Had heavy slab leakage and wall cracks for years. Buildora's repair team did proper waterproofing and structural strengthening – problem completely fixed and house feels new." },
 ];
 
 
@@ -215,6 +236,7 @@ export default function App() {
           <nav className={`nav-links${menuOpen ? " nav-open" : ""}`}>
             <a href="#top"      onClick={close}>Home</a>
             <a href="#about"    onClick={close}>About</a>
+            <a href="#what-we-do" onClick={close}>What We Do</a>
             <a href="#pricing"  onClick={close}>Packages</a>
             <a href="#services" onClick={close}>Services</a>
             <a href="#home-planner" onClick={close}>Home Planner</a>
@@ -241,7 +263,7 @@ export default function App() {
           <div className="hero-copy">
             <div className="hero-eyebrow"><span className="eyebrow-line" />Est. 2015 – Cholapuram, Ambattur, Chennai</div>
             <h1 className="hero-h1">Your Dream,<br /><span className="hero-gold">Our Commitment.</span></h1>
-            <p className="hero-desc">Your dream home deserves the best – and Buildora Homes delivers it at prices that make sense. From foundation to smart home finish, serving Chennai families for over a decade, on time and on budget.</p>
+            <p className="hero-desc">From ground-up new home construction to full renovations and trusted repairs on existing homes – Buildora Homes does it all. Serving Chennai families for over a decade with transparent pricing, in-house teams and on-time delivery.</p>
             <div className="hero-btns">
               <a href="#pricing" className="btn-gold">View Our Packages</a>
               <a href="#client-intake" className="btn-gold">Fill Your Details</a>
@@ -286,17 +308,60 @@ export default function App() {
           <div className="about-copy">
             <p className="section-tag">ABOUT BUILDORA HOMES</p>
             <h2 className="section-h2">Your dream home, built with integrity and commitment.</h2>
-            <p className="about-text">Buildora Homes is a Chennai-based end-to-end residential construction company with 10+ years of turning client dreams into reality. From foundation to smart home integration – we manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
+            <p className="about-text">Buildora Homes is a Chennai-based residential specialist with 10+ years of experience across three core services – <strong>new home construction</strong>, <strong>full home renovation</strong>, and <strong>existing home repairs &amp; fixing</strong>. We manage every detail in-house, with zero compromise on quality and full cost transparency.</p>
             <ul className="about-points">
-              <li><span className="apoint-icon"><CheckIcon /></span>Transparent pricing – exact cost per sq ft, zero hidden charges</li>
-              <li><span className="apoint-icon"><CheckIcon /></span>Dedicated in-house teams for civil, electrical and plumbing</li>
-              <li><span className="apoint-icon"><CheckIcon /></span>Smart home and IoT-ready construction packages available</li>
-              <li><span className="apoint-icon"><CheckIcon /></span>On-time delivery with quality-controlled snag-free handover</li>
+              <li><span className="apoint-icon"><CheckIcon /></span>Build-to-suit new homes – foundation to smart home finish</li>
+              <li><span className="apoint-icon"><CheckIcon /></span>End-to-end renovations – kitchens, bathrooms, facades &amp; full remodels</li>
+              <li><span className="apoint-icon"><CheckIcon /></span>Reliable repairs – leakage, cracks, rewiring, plumbing &amp; structural fixes</li>
+              <li><span className="apoint-icon"><CheckIcon /></span>Transparent pricing &amp; on-time delivery on every project</li>
             </ul>
             <div className="about-actions">
               <a href="#contact" className="btn-gold">Start Your Project</a>
               <a href="#pricing" className="btn-text-link">See Packages &rarr;</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THREE SERVICE PILLARS */}
+      <section className="pillars-section" id="what-we-do">
+        <div className="section-head">
+          <p className="section-tag">WHAT WE DO</p>
+          <h2 className="section-h2">Three things we do exceptionally well.</h2>
+        </div>
+        <div className="pillars-grid">
+          <div className="pillar-card">
+            <div className="pillar-num">01</div>
+            <h3 className="pillar-title">New Home Construction</h3>
+            <p className="pillar-desc">Ground-up construction from foundation to handover. Site planning, structural work, MEP, finishes and smart-home integration – all in-house, all transparent.</p>
+            <ul className="pillar-points">
+              <li>Foundation to roof slab</li>
+              <li>5 packages from ₹1,999/sq ft</li>
+              <li>2D &amp; 3D design included</li>
+            </ul>
+            <a href="#pricing" className="btn-text-link">See packages &rarr;</a>
+          </div>
+          <div className="pillar-card pillar-card-mid">
+            <div className="pillar-num">02</div>
+            <h3 className="pillar-title">Home Renovation</h3>
+            <p className="pillar-desc">Bring tired homes back to life. Full remodels, modular kitchens, bathroom redos, elevation refresh and complete interior transformation – without you moving out for months.</p>
+            <ul className="pillar-points">
+              <li>Full home &amp; partial renovations</li>
+              <li>Kitchens, bathrooms &amp; facades</li>
+              <li>Modern finishes &amp; layouts</li>
+            </ul>
+            <a href="#services" className="btn-text-link">See renovation services &rarr;</a>
+          </div>
+          <div className="pillar-card">
+            <div className="pillar-num">03</div>
+            <h3 className="pillar-title">Repairs &amp; Fixing</h3>
+            <p className="pillar-desc">Reliable fixes for existing homes. Leakage, cracks, waterproofing, structural strengthening, electrical rewiring and plumbing problems solved properly – not patched.</p>
+            <ul className="pillar-points">
+              <li>Waterproofing &amp; leakage repair</li>
+              <li>Structural &amp; crack repairs</li>
+              <li>Electrical &amp; plumbing fixes</li>
+            </ul>
+            <a href="#services" className="btn-text-link">See repair services &rarr;</a>
           </div>
         </div>
       </section>
@@ -424,18 +489,20 @@ export default function App() {
       <section className="services-section" id="services">
         <div className="section-head">
           <p className="section-tag">OUR SERVICES</p>
-          <h2 className="section-h2">Every stage of your build,<br />handled by specialists.</h2>
+          <h2 className="section-h2">New construction, renovations &amp; repairs –<br />all under one roof.</h2>
         </div>
 
         {/* Category filter tabs */}
         <div className="svc-tabs-wrap">
           <div className="svc-tabs">
             {[
-              { key: "All",       label: "All Services"           },
-              { key: "Planning",  label: "Planning & Design"      },
-              { key: "Structure", label: "Structure & Civil"      },
-              { key: "MEP",       label: "Electrical & Plumbing"  },
-              { key: "Finishes",  label: "Finishes"               },
+              { key: "All",          label: "All Services"            },
+              { key: "Construction", label: "New Construction"        },
+              { key: "Renovation",   label: "Renovation"              },
+              { key: "Repairs",      label: "Repairs & Fixing"        },
+              { key: "Planning",     label: "Planning & Design"       },
+              { key: "MEP",          label: "Electrical & Plumbing"   },
+              { key: "Finishes",     label: "Finishes"                },
             ].map(tab => (
               <button
                 key={tab.key}
@@ -576,11 +643,11 @@ export default function App() {
             </div>
             <div className="footer-col">
               <p className="footer-col-title">Services</p>
-              <a href="#services">Building Construction</a>
-              <a href="#services">Elevation Design</a>
-              <a href="#services">Smart Home (IoT)</a>
-              <a href="#services">Plastering and Tiles</a>
-              <a href="#services">Painting Work</a>
+              <a href="#services">New Home Construction</a>
+              <a href="#services">Home Renovation</a>
+              <a href="#services">Repairs &amp; Fixing</a>
+              <a href="#services">Waterproofing &amp; Leakage</a>
+              <a href="#services">Elevation &amp; Interiors</a>
             </div>
             <div className="footer-col">
               <p className="footer-col-title">Get in Touch</p>

@@ -47,7 +47,7 @@ export default function IntakePage() {
     state: '',
     pinCode: '',
     preferredContact: 'Phone',
-    projectType: 'New Construction',
+    projectType: 'New Home Construction',
     plotArea: '',
     builtUpArea: '',
     numberOfFloors: '',
@@ -208,8 +208,8 @@ export default function IntakePage() {
     <section className="intake-section">
       <div className="section-head">
         <p className="section-tag">CLIENT INTAKE</p>
-        <h2 className="section-h2">Share your project details on a dedicated page.</h2>
-        <p className="section-sub">Use this separate intake page to fill the form and upload the required documents from your PDF.</p>
+        <h2 className="section-h2">Tell us about your project — new build, renovation or repair.</h2>
+        <p className="section-sub">Whether you're planning a new home, renovating an existing one, or need professional repair work — share your details and documents here. We'll get back within 24 hours.</p>
       </div>
 
       <div className="intake-form-wrap">
@@ -273,10 +273,14 @@ export default function IntakePage() {
               <label className="form-group">
                 <span className="form-label">Project Type</span>
                 <select name="projectType" value={formData.projectType} onChange={handleChange} className="form-input">
-                  <option>New Construction</option>
-                  <option>Renovation</option>
-                  <option>Extension</option>
-                  <option>Interior Finish</option>
+                  <option>New Home Construction</option>
+                  <option>Home Renovation (Full)</option>
+                  <option>Partial Renovation (Kitchen / Bathroom / Facade)</option>
+                  <option>Existing Home Repairs &amp; Fixing</option>
+                  <option>Waterproofing &amp; Leakage Fix</option>
+                  <option>Structural Repairs</option>
+                  <option>Extension / Additional Floor</option>
+                  <option>Interior Finish Only</option>
                 </select>
               </label>
               <label className="form-group">
